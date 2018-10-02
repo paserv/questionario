@@ -18,35 +18,36 @@
       <script type="text/javascript" src="/static/js/jquery-ui.min.js"></script>
       <script type="text/javascript" src="/static/js/materialize.min.js"></script>
       <script type="text/javascript" src="/static/js/site.js"></script>
-      <script type="text/javascript" src="/static/js/bdp.js"></script>     
+      <script type="text/javascript" src="/static/js/bdp.js"></script> 
+      <script type="text/javascript" src="/static/js/survey.jquery.min.js"></script>
    </head>
    <body>
       <header>
-	      <div class="navbar-fixed">
-	         <nav class="top-nav">
+	      <div class="navbar-fixed red darken-4">
+	         <nav class="top-nav red darken-4">
 	            <div class="nav-wrapper">
-	               <a href="/" class="brand-logo customlogo"><img src="/static/img/logo.png" width="250px"></img></a>
+	               <a href="/" class="brand-logo logo right">FantaGenio Hotel<img src="/static/img/logo.png" width="50px" style="margin-left:10px"></img></a>
 	            </div>
 	         </nav>
 	      </div>
       </header>
       <main>
-         {% block content %}{% endblock %}
+      {% block content %}{% endblock %}
       </main>
-      <footer class="page-footer style-footer footerrow">
+      <footer class="page-footer style-footer footerrow red darken-4">
          <div class="footerline"></div>
          <div class="container" style="width: 95%;">
-            <div class="footer-copyright container-footer style-footer-copyright right bold">
+            <div class="footer-copyright container-footer style-footer-copyright right bold red darken-4">
                <div class="right">
-					<div class="left">Frase....</div>
-					<img class="responsive-img notalink" width="40px" stylr="margin-left:10px" src="/static/img/logo.png" />
+					<div class="left">Questionario di gradimento</div>
+					<img class="responsive-img notalink" width="20px" style="margin-left:10px" src="/static/img/logo.png" />
                </div>
             </div>
          </div>
       </footer>
       <script>
          $(document).ready(function() {
-            
+        	 showQuestionario();
          });
       </script>
    </body>
