@@ -1,5 +1,6 @@
 from flask import Flask, render_template, send_from_directory, jsonify, request, redirect, session, url_for
 import os
+import data
 
 app = Flask(__name__)
 
@@ -20,3 +21,10 @@ def favicon():
 @app.route('/')
 def home():
     return render_template('home.html', title="Home Page")
+
+##### API #####
+@app.route('/save', methods=['POST'])
+def save_questionario():
+    payload = request.data
+    data.save_questionario(payload)
+    return 'Questionario salvato con successo', 200

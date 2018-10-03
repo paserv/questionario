@@ -30,16 +30,30 @@
      "type": "matrix",
      "name": "question2",
      "title": "Prego, valuta il processo di check-in:",
-     "isRequired": true,
      "columns": [
       "Concordo",
       "Non Concordo",
       "N/A"
      ],
      "rows": [
-      "Il processo di check-in è eseguito in tempo ed efficentemente",
-      "Lo staff al check-in è stato cortese",
-      "La mia registrazione è stata accurata"
+      {
+       "value": "q21",
+       "text": {
+        "it": "Il processo di check-in e' eseguito in tempo ed efficentemente"
+       }
+      },
+      {
+       "value": "q22",
+       "text": {
+        "it": "Lo staff al check-in e' stato cortese"
+       }
+      },
+      {
+       "value": "q23",
+       "text": {
+        "it": "La mia registrazione e' stata accurata"
+       }
+      }
      ]
     }
    ]
@@ -53,17 +67,36 @@
      "title": {
       "it": "Prego valuta la tua sistemazione"
      },
-     "isRequired": true,
      "columns": [
       "Concordo",
       "Non Concordo",
       "N/A"
      ],
      "rows": [
-      "La mia camera era arredata in modo appropriato",
-      "La mia camera era pulita e confortevole",
-      "Il mio letto era confortevole",
-      "Il bagno era pulito ed equipaggiato"
+      {
+       "value": "q21",
+       "text": {
+        "it": "La mia camera era arredata in modo appropriato"
+       }
+      },
+      {
+       "value": "q22",
+       "text": {
+        "it": "La mia camera era pulita e confortevole"
+       }
+      },
+      {
+       "value": "q23",
+       "text": {
+        "it": "Il mio letto era confortevole"
+       }
+      },
+      {
+       "value": "q24",
+       "text": {
+        "it": "Il bagno era pulito ed equipaggiato"
+       }
+      }
      ]
     }
    ]
@@ -77,18 +110,42 @@
      "title": {
       "it": "Prego, valuta il nostro staff:"
      },
-     "isRequired": true,
      "columns": [
       "Concordo",
       "Non Concordo",
       "N/A"
      ],
      "rows": [
-      "Il personale era amichevole e affidabile",
-      "Il servizio di sicurezza era disponibile quando necessario",
-      "Il personale d'accoglienza era competente e ha risposto a tutte le domande",
-      "Il personale d'accoglienza era pronto, amichevole e affidabile",
-      "La direzione era pronta a risolvere i problemi"
+      {
+       "value": "q31",
+       "text": {
+        "it": "Il personale era amichevole e affidabile"
+       }
+      },
+      {
+       "value": "q32",
+       "text": {
+        "it": "Il servizio di sicurezza era disponibile quando necessario"
+       }
+      },
+      {
+       "value": "q33",
+       "text": {
+        "it": "Il personale d'accoglienza era competente e ha risposto a tutte le domande"
+       }
+      },
+      {
+       "value": "q34",
+       "text": {
+        "it": "Il personale d'accoglienza era pronto, amichevole e affidabile"
+       }
+      },
+      {
+       "value": "q35",
+       "text": {
+        "it": "La direzione era pronta a risolvere i problemi"
+       }
+      }
      ]
     }
    ]
@@ -102,18 +159,42 @@
      "title": {
       "it": "Prego, valuta l'offerta dell'hotel in quanto ai pasti:"
      },
-     "isRequired": true,
      "columns": [
       "Concordo",
       "Non concordo",
       "N/A"
      ],
      "rows": [
-      "Il servizio in camera consegnava il corretto ordine",
-      "La qualità delle pietanze era buona",
-      "Il personale della ristorazione era disponibile",
-      "item1Le pietanze offerte erano molte",
-      "I prezzi sono adeguati"
+      {
+       "value": "q51",
+       "text": {
+        "it": "Il servizio in camera consegnava il corretto ordine"
+       }
+      },
+      {
+       "value": "q52",
+       "text": {
+        "it": "La qualita' delle pietanze era buona"
+       }
+      },
+      {
+       "value": "q53",
+       "text": {
+        "it": "Il personale della ristorazione era disponibile"
+       }
+      },
+      {
+       "value": "q54",
+       "text": {
+        "it": "item1Le pietanze offerte erano molte"
+       }
+      },
+      {
+       "value": "q55",
+       "text": {
+        "it": "I prezzi sono adeguati"
+       }
+      }
      ]
     }
    ]
@@ -127,15 +208,24 @@
      "title": {
       "it": "Prego, valuta il processo di check-out:"
      },
-     "isRequired": true,
      "columns": [
       "Concordo",
       "Non concordo",
       "N/A"
      ],
      "rows": [
-      "Ho ricevuto un conto completo e accurato",
-      "Il processo di check-out è stato agevole"
+      {
+       "value": "q61",
+       "text": {
+        "it": "Ho ricevuto un conto completo e accurato"
+       }
+      },
+      {
+       "value": "q62",
+       "text": {
+        "it": "Il processo di check-out e' stato agevole"
+       }
+      }
      ]
     }
    ]
@@ -146,16 +236,8 @@
     {
      "type": "rating",
      "name": "question7",
-     "title": {
-      "it": "Nel complesso come valuteresti la tua esperienza nel nostro hotel?"
-     },
-     "isRequired": true,
-     "minRateDescription": {
-      "it": " "
-     },
-     "maxRateDescription": {
-      "it": " "
-     }
+     "title": "Nel complesso come valuteresti la tua esperienza nel nostro hotel?",
+     "isRequired": true
     }
    ]
   }

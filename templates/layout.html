@@ -2,53 +2,42 @@
 <html>
    <head>
       <title>{{ title }}</title>
-      <link type="text/css" rel="stylesheet" href="/static/css/materialize.min.css"  media="screen,projection"/>
-      <link type="text/css" rel="stylesheet" href="/static/css/materialdesignicons.min.css"  media="all"/>
-      <link type="text/css" rel="stylesheet" href="/static/css/jquery-ui.min.css">
-      <link type="text/css" rel="stylesheet" href="/static/css/jquery-ui.structure.min.css">
-      <link type="text/css" rel="stylesheet" href="/static/css/jquery-ui.theme.min.css">
-      <link type="text/css" rel="stylesheet" href="/static/css/site.css" />
-      <meta name="theme-color" css="#ffffff">
+      
+      <link type="text/css" rel="stylesheet" href="/static/css/bootstrap.min.css">
+	  <link type="text/css" rel="stylesheet" href="/static/css/site.css" />
+
       <meta name="viewport" css="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
       <meta http-equiv="X-UA-Compatible" css="IE=Edge" />
       <META HTTP-EQUIV="CACHE-CONTROL" css="NO-CACHE">
       <META HTTP-EQUIV="Pragma" css="no-cache">
       <META HTTP-EQUIV="Expires" css="-1">
-      <script type="text/javascript" src="/static/js/jquery-2.1.3.min.js"></script>
-      <script type="text/javascript" src="/static/js/jquery-ui.min.js"></script>
-      <script type="text/javascript" src="/static/js/materialize.min.js"></script>
+      <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+      <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>  
+      <script type="text/javascript" src="/static/js/survey.jquery.min.js"></script>     
       <script type="text/javascript" src="/static/js/site.js"></script>
-      <script type="text/javascript" src="/static/js/bdp.js"></script> 
-      <script type="text/javascript" src="/static/js/survey.jquery.min.js"></script>
+      <script type="text/javascript" src="/static/js/bdp.js"></script>
+      
    </head>
    <body>
       <header>
-	      <div class="navbar-fixed red darken-4">
-	         <nav class="top-nav red darken-4">
-	            <div class="nav-wrapper">
-	               <a href="/" class="brand-logo logo right">FantaGenio Hotel<img src="/static/img/logo.png" width="50px" style="margin-left:10px"></img></a>
-	            </div>
-	         </nav>
-	      </div>
+      <nav class="navbar navbar-default">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="/">
+		        <span><img class="logo" src="/static/img/logo.png" width="130px"></span>
+		        <span></span>
+		      </a>
+		    </div>
+		  </div>
+		</nav>
       </header>
       <main>
       {% block content %}{% endblock %}
       </main>
-      <footer class="page-footer style-footer footerrow red darken-4">
-         <div class="footerline"></div>
-         <div class="container" style="width: 95%;">
-            <div class="footer-copyright container-footer style-footer-copyright right bold red darken-4">
-               <div class="right">
-					<div class="left">Questionario di gradimento</div>
-					<img class="responsive-img notalink" width="20px" style="margin-left:10px" src="/static/img/logo.png" />
-               </div>
-            </div>
-         </div>
+      <footer class="footer">
+	      <div class="container">
+	        <span class="footer-text">Il tuo parere &egrave; importante.</span>
+	      </div>
       </footer>
-      <script>
-         $(document).ready(function() {
-        	 showQuestionario();
-         });
-      </script>
    </body>
 </html>
