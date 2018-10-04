@@ -8,7 +8,10 @@
     {
      "type": "imagepicker",
      "name": "question1",
-     "title": "Ti sei sentito il benvenuto al nostro Hotel?",
+     "title": {
+     	"it": "Ti sei sentito il benvenuto al nostro Hotel?",
+     	"en": "Did you feel welcome at our Hotel?"
+     	},
      "isRequired": true,
      "choices": [
       {
@@ -29,29 +32,50 @@
     {
      "type": "matrix",
      "name": "question2",
-     "title": "Prego, valuta il processo di check-in:",
+     "title": {
+     	"it": "Prego, valuta il processo di check-in:",
+     	"en": "Please, evaluate the check-in process:"
+     	},
      "columns": [
-      "Concordo",
-      "Non Concordo",
-      "N/A"
+      {"value": "Concordo",
+	       "text": {
+	        "it": "Concordo",
+	        "en": "Agree"
+	       }
+      },
+      {"value": "Non concordo",
+	       "text": {
+	        "it": "Non concordo",
+	        "en": "Disagree"
+	       }
+      },
+      {"value": "N/A",
+	       "text": {
+	        "it": "N/A",
+	        "en": "N/A"
+	       }
+      }
      ],
      "rows": [
       {
        "value": "q21",
        "text": {
-        "it": "Il processo di check-in e' eseguito in tempo ed efficentemente"
+        "it": "Il processo di check-in e' eseguito in tempo ed efficentemente",
+        "en": "The check-in process is performed on time and efficiently"
        }
       },
       {
        "value": "q22",
        "text": {
-        "it": "Lo staff al check-in e' stato cortese"
+        "it": "Lo staff al check-in e' stato cortese",
+        "en": "The staff at check-in was kind"
        }
       },
       {
        "value": "q23",
        "text": {
-        "it": "La mia registrazione e' stata accurata"
+        "it": "La mia registrazione e' stata accurata",
+        "en": "My registration was accurate"
        }
       }
      ]
@@ -64,7 +88,10 @@
     {
      "type": "rating",
      "name": "question7",
-     "title": "Nel complesso come valuteresti la tua esperienza nel nostro hotel?",
+     "title": {
+     	"it": "Nel complesso come valuteresti la tua esperienza nel nostro hotel?",
+     	"en": "How would you rate your experience in our hotel?"
+     },
      "isRequired": true
     }
    ]
@@ -75,12 +102,15 @@
  "showProgressBar": "top",
  "goNextPageAutomatic": true,
  "startSurveyText": {
-  "it": "Inizia"
+  "it": "Inizia",
+  "en": "Start"
  },
  "pagePrevText": {
-  "it": "Indietro"
+  "it": "Indietro",
+  "en": "Back"
  },
  "completeText": {
-  "it": "Completa"
+  "it": "Completa",
+  "en": "Finish"
  }
 }

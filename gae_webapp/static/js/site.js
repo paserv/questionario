@@ -1,8 +1,13 @@
 $(document).ready(function() {
-	showQuestionario();
+	//showQuestionario();
 });
 
-function showQuestionario() {
+function setLang(locale) {
+	showQuestionario(locale);
+	$("#lang").hide();
+}
+
+function showQuestionario(locale) {
 	$.getJSON('/static/js/survey.json', function(data) {    
 	    Survey
 	    .StylesManager
@@ -19,8 +24,8 @@ function showQuestionario() {
 	    		window.location.href = "/"; 
 	    	} , 2000);
 	    });
+	    survey.locale = locale;
 	    $("#survey").Survey({model: survey});
-
 	});
 }
 
