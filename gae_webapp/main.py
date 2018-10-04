@@ -1,7 +1,6 @@
 from flask import Flask, render_template, send_from_directory, request
+from google.appengine.api import taskqueue
 import os
-import data
-import sheet_client
 
 app = Flask(__name__)
 
@@ -27,6 +26,6 @@ def home():
 @app.route('/save', methods=['POST'])
 def save_questionario():
     payload = request.data
-    data.save_questionario(payload)
-    sheet_client.save_questionario(payload)
+    taskqueue.add(url='/admin/datastore/save', payload=payload, target='admin')
+    taskqueue.add(url='/admin/sheet/save', payload=payload, target='admin')
     return 'Questionario salvato con successo', 200
