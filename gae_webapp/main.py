@@ -1,6 +1,7 @@
-from flask import Flask, render_template, send_from_directory, jsonify, request, redirect, session, url_for
+from flask import Flask, render_template, send_from_directory, request
 import os
 import data
+import sheet_client
 
 app = Flask(__name__)
 
@@ -27,4 +28,5 @@ def home():
 def save_questionario():
     payload = request.data
     data.save_questionario(payload)
+    sheet_client.save_questionario(payload)
     return 'Questionario salvato con successo', 200

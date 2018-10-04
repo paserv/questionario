@@ -14,9 +14,9 @@ function showQuestionario() {
 	    .add(function (result) {
 	    	let questionarioMap = getMap(data);
 	    	saveQuestionario(result.data, questionarioMap);
-	    	$("#survey").html(JSON.stringify(result.data));
+	    	//$("#survey").html(JSON.stringify(result.data));
 	    	setTimeout(function() { 
-	    		//window.location.href = "/"; 
+	    		window.location.href = "/"; 
 	    	} , 2000);
 	    });
 	    $("#survey").Survey({model: survey});
