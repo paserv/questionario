@@ -40,7 +40,7 @@ function getMap(questionario) {
 					result[vvv['value']] = vvv['text']['it'];
 				});
 			} else {
-				result[vv['name']] = vv['title'];
+				result[vv['name']] = vv['title']['it'];
 			}
 		});
 	});
