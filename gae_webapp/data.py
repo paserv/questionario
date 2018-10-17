@@ -24,3 +24,24 @@ def save_risposta(key, risposta, domandatext, now):
         domandaEntity.put()
     rispostaEntity = model.Risposta(parent=domandaKey, text=str(risposta), created=now)
     rispostaEntity.put()
+    
+def get_questions():
+    result = []
+    questions = model.Domanda.query()
+    for question in questions:
+        result.append({"key": question.key.string_id(), "text": question.text})
+    return result
+    
+def get_answers(fromDate, toDate, qid):
+    result = []
+    result.append([qid, qid])
+    answers = model.Risposta.query(ancestor=ndb.Key('Domanda', qid)).filter(model.Risposta.created >= fromDate, model.Risposta.created<= toDate)
+    resultDict = {}
+    for answer in answers:
+        if answer.text in resultDict:
+            resultDict[answer.text] = resultDict[answer.text] + 1
+        else:
+            resultDict[answer.text] = 1
+    for key, value in resultDict.iteritems():
+        result.append([key, value])
+    return result
