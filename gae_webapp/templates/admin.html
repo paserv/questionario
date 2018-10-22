@@ -32,16 +32,20 @@
 		</nav>
       </header>
       <main>
-      	<div class="container-fluid ">
-		 <div id="charts"></div>
+      	<div id="result" class="container-fluid ">
 		</div>
       </main>
- 
+ 	
+ 	<div id="chartswitch" class="" role="group">
+ 		<button id="chart_btn" type="button" class="mybtn" style="display:none" onclick='changeTo("chart", "table")'><span class="glyphicon glyphicon-stats" aria-hidden="true"></span></button>
+ 		<button id="table_btn" type="button" class="mybtn" onclick='changeTo("table", "chart")'><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></button>
+ 	</div>
+ 	<!-- 
       <footer class="footer">
 	      <div class="container">
 	        <span class="footer-text">Risultati questionario di soddisfazione cliente</span>
 	      </div>
       </footer>
-
+ -->
    </body>
 </html>
