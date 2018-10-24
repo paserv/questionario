@@ -1,29 +1,72 @@
-google.charts.load("current", {packages:["corechart", "table"]});
-google.charts.setOnLoadCallback(drawCharts);
+google.charts.load("current", {packages:["corechart", "table", "annotatedtimeline"]});
+google.charts.setOnLoadCallback(firstRun);
 
 
 function drawCharts() {
-	$.ajax({
-	      type: "GET",
-	      url: "/admin/get-questions",
-	      contentType: "application/json",
-	      success: function (questions) {
-	        
-	      for (let i in questions) {
-	    	  drawChart(questions[i]["key"], questions[i]["text"], "2018-10-15", "2018-10-17");
-	      } 
-	    	  
-	      },
-	      error: function (xhr, ajaxOptions, thrownError) {
-	    	console.log(xhr.status);
-	    	console.log(thrownError);
-	      }
-	    });
+	if(isDataRangeValid()) {
+		$("#preloader").show();
+		$("#result").html("");
+		$("#timeseries").html("");
+		
+		$.ajax({
+		      type: "GET",
+		      url: "/admin/get-questions",
+		      contentType: "application/json",
+		      success: function (questions) {
+		      $("#preloader").hide();
+		      for (let i in questions) {
+		    	  drawChart(questions[i]["key"], questions[i]["text"], $("#from_date").val(), $("#to_date").val());
+		      } 
+		    	  
+		      },
+		      error: function (xhr, ajaxOptions, thrownError) {
+		    	console.log(xhr.status);
+		    	console.log(thrownError);
+		      }
+		    });
+		
+		let payload = '{ "from": "' + $("#from_date").val() + '", "to": "' + $("#to_date").val() + '" }'
+		$.ajax({
+			type: "POST",
+		      url: "/admin/get-answers-by-day",
+		      contentType: "application/json",
+		      data: payload,
+		      success: function (answers) {
+		    	  $("#totalnum").html("Numero di risposte nel periodo: " + answers['total']);
+		    	  drawTimeSeries(answers);
+		      },
+		      error: function (xhr, ajaxOptions, thrownError) {
+		    	console.log(xhr.status);
+		    	console.log(thrownError);
+		      }
+		});
+	}
+
 }
 
-var g_answers = [];
+function drawTimeSeries(answers) {
+	$("#timeseries").html("");
+	let data = new google.visualization.DataTable();
+    data.addColumn('date', 'Data');
+    data.addColumn('number', 'Risposte');
+    let rows = [];
+    $.each(answers['data'], function( index, value ) {
+    	rows.push([new Date(value[0]), value[1]]);
+    });
+    data.addRows(rows);
+
+    $("#timeseries").append('<div class="row"><div class="col s12" style="margin-top: 20px">Serie temporale</div></div>');
+    $("#timeseries").append('<div class="row"><div class="col s12"><div id="timechart" style="width: 100%; height: 500px;"></div></div></div>');
+    
+    let chart = new google.visualization.AnnotatedTimeLine(document.getElementById('timechart'));
+    chart.draw(data, {
+    	displayAnnotations: false,
+    	width: '100%', 
+    	height: '100%'	
+    });
+}
+
 function drawChart(qid, title, from, to) {
-	g_answers = [];
 	let payload = '{ "qid": "' + qid + '", "from": "' + from + '", "to": "' + to + '" }'
 	$.ajax({
 	      type: "POST",
@@ -32,14 +75,8 @@ function drawChart(qid, title, from, to) {
 	      data: payload,
 	      success: function (answers) {
 	    	
-	    	g_answers = answers;
-	    	//$("#result").append('<div class="row"><div class="col col-sm-12 col-md-6"><div id="' + qid +'" style="width: 100%"></div></div><div class="col col-sm-12 col-md-6"><div id="' + qid +'_table" style="margin-top:30px"></div></div></div>');
-	    	$("#result").append('<div class="row" style="margin-left: 0px"><div class="col col-sm-12">' + title + '</div>');
-	    	$("#result").append('<div class="row">');
-	    	$("#result").append('<div class="col col-sm-12"><div class="chart" id="'+ qid +'"></div></div>');
-	    	$("#result").append('<div class="col col-sm-12"><div style="display:none" class="table" id="'+ qid +'_table"></div></div>');
-	    	$("#result").append('</div>');
-	    	
+	    	$("#result").append('<div class="row"><div class="col s12 title" style="margin-top: 20px">' + title + '</div></div>');
+	    	$("#result").append('<div class="row"><div class="col s12"><div class="chart" id="'+ qid +'"></div></div><div class="col s12"><div style="display:none" class="table" id="'+ qid +'_table"></div></div></div>');
 	        let data = google.visualization.arrayToDataTable(answers);
 	        var options = {
 	        		legend: 'right',
@@ -74,9 +111,6 @@ function drawChart(qid, title, from, to) {
 }
 
 function changeTo(from, to) {
-	$("#" + from + "_btn").hide();
-	$("#" + to + "_btn").show();
-	
 	$( "." + to ).each(function( index ) {
 		$( this ).hide();
 	});
@@ -84,6 +118,18 @@ function changeTo(from, to) {
 	$( "." + from ).each(function( index ) {
 		$( this ).show();
 	});
+	
+	$( ".title" ).each(function( index ) {
+		$( this ).show();
+	});
+}
+
+function showTimeSeries() {
+	if($("#timeseries").is(":visible")) {
+		$("#timeseries").hide();
+	} else {
+		$("#timeseries").show();
+	}
 	
 }
 /**
@@ -112,3 +158,62 @@ function drawTable() {
 		  });
 }
 */
+
+function setActive(id) {
+	$(".mynavbtn").each(function( index ) {
+		$( this ).removeClass("active");
+	});
+	$("#"+id).addClass("active");
+}
+
+function firstRun() {
+	$("#date_range").hide();
+	setActive("month");
+	var today = new Date();
+	$("#from_date").val("01-" + (today.getMonth()+1) + "-" + today.getFullYear());
+	$("#to_date").val(today.getDate() + "-" + (today.getMonth()+1) + "-" + today.getFullYear());
+	drawCharts();
+}
+
+function drawToday() {
+	$("#date_range").hide();
+	setActive("today");
+	var today = new Date();
+	var todayString = today.getDate() + "-" + (today.getMonth()+1) + "-" + today.getFullYear();
+	$("#from_date").val(todayString);
+	$("#to_date").val(todayString);
+	drawCharts();
+}
+
+function drawMonth() {
+	$("#date_range").hide();
+	firstRun();
+	drawCharts();
+}
+
+function drawYear() {
+	$("#date_range").hide();
+	setActive("year");
+	var today = new Date();
+	$("#from_date").val("01-01-" + today.getFullYear());
+	$("#to_date").val(today.getDate() + "-" + (today.getMonth()+1) + "-" + today.getFullYear());
+	drawCharts();
+}
+
+function showCustom() {
+	$("#date_range").show();
+}
+
+function isDataRangeValid() {
+	if ($("#from_date").val() && $("#to_date").val() && $("#from_date").val() != "" && $("#to_date").val() != "") {
+		let fromDateSplitted = $("#from_date").val().split("-");
+		let currFrom = new Date(fromDateSplitted[2] + "-" + fromDateSplitted[1] + "-" + fromDateSplitted[0] + "T00:00:00Z");
+		let toDateSplitted = $("#to_date").val().split("-");
+		let currTo = new Date(toDateSplitted[2] + "-" + toDateSplitted[1] + "-" + toDateSplitted[0] + "T23:59:59Z");
+		if (currTo > currFrom) {
+			return true;
+		}
+		M.toast({html: 'Date non compatibili!'});
+		return false;
+	}
+}

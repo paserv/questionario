@@ -31,7 +31,24 @@ def get_questions():
     for question in questions:
         result.append({"key": question.key.string_id(), "text": question.text})
     return result
-    
+
+def get_answers_by_day(fromDate, toDate):
+    result = {"total": 0, "data": []}
+    answers = model.Risposta.query().filter(model.Risposta.created >= fromDate, model.Risposta.created<= toDate)
+    counter = 0
+    resultDict = {}
+    for answer in answers:
+        tmst = answer.created.strftime("%Y-%m-%d")
+        if tmst in resultDict:
+            resultDict[tmst] = resultDict[tmst] + 1
+        else:
+            resultDict[tmst] = 1
+        counter = counter + 1
+    for key, value in resultDict.iteritems():
+        result['data'].append([key, value])
+    result['total'] = counter
+    return result
+       
 def get_answers(fromDate, toDate, qid):
     result = []
     result.append([qid, qid])

@@ -15,12 +15,20 @@ def get_questions():
     result = data.get_questions()
     return jsonify(result)
 
+@app.route('/admin/get-answers-by-day', methods=['POST'])
+def get_answers_by_day():
+    inputData = json.loads(request.data)
+    fromDate = datetime.strptime(inputData['from'] + ' 00:00:00', '%d-%m-%Y %H:%M:%S')
+    toDate = datetime.strptime(inputData['to'] + ' 23:59:59', '%d-%m-%Y %H:%M:%S')
+    result = data.get_answers_by_day(fromDate, toDate)
+    return jsonify(result)
+
 @app.route('/admin/get-answers', methods=['POST'])
 def get_answers():
     inputData = json.loads(request.data)
     qid = inputData['qid']
-    fromDate = datetime.strptime(inputData['from'] + ' 00:00:00', '%Y-%m-%d %H:%M:%S')
-    toDate = datetime.strptime(inputData['to'] + ' 23:59:59', '%Y-%m-%d %H:%M:%S')
+    fromDate = datetime.strptime(inputData['from'] + ' 00:00:00', '%d-%m-%Y %H:%M:%S')
+    toDate = datetime.strptime(inputData['to'] + ' 23:59:59', '%d-%m-%Y %H:%M:%S')
     result = data.get_answers(fromDate, toDate, qid)
     return jsonify(result)
 
