@@ -16,6 +16,7 @@ function drawCharts() {
 		      $("#preloader").hide();
 		      for (let i in questions) {
 		    	  drawChart(questions[i]["key"], questions[i]["text"], $("#from_date").val(), $("#to_date").val());
+		    	  changeTo("chart", "timeseries", "table");
 		      } 
 		    	  
 		      },
@@ -79,6 +80,8 @@ function drawChart(qid, title, from, to) {
 	    	$("#result").append('<div class="row"><div class="col s12"><div class="chart" id="'+ qid +'"></div></div><div class="col s12"><div style="display:none" class="table" id="'+ qid +'_table"></div></div></div>');
 	        let data = google.visualization.arrayToDataTable(answers);
 	        var options = {
+	        		width: '100%', 
+	  	      	  	height: '100%',
 	        		legend: 'right',
 	                pieSliceText: 'percentage',
 	                backgroundColor: {strokeWidth: 1 },
@@ -110,18 +113,28 @@ function drawChart(qid, title, from, to) {
 	});
 }
 
-function changeTo(from, to) {
-	$( "." + to ).each(function( index ) {
+function changeTo(toshow, tohide1, tohide2) {
+	$( "." + tohide1 ).each(function( index ) {
 		$( this ).hide();
 	});
 	
-	$( "." + from ).each(function( index ) {
-		$( this ).show();
+	$( "." + tohide2 ).each(function( index ) {
+		$( this ).hide();
 	});
 	
-	$( ".title" ).each(function( index ) {
+	$( "." + toshow ).each(function( index ) {
 		$( this ).show();
-	});
+	});	
+	
+	if (toshow == "timeseries") {
+		$( ".title" ).each(function( index ) {
+			$( this ).hide();
+		});
+	} else {
+		$( ".title" ).each(function( index ) {
+			$( this ).show();
+		});
+	}
 }
 
 function showTimeSeries() {
@@ -202,6 +215,7 @@ function drawYear() {
 
 function showCustom() {
 	$("#date_range").show();
+	setActive("custom");
 }
 
 function isDataRangeValid() {

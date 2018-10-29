@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>{{ title }}</title>
+<title>Admin</title>
 
-<link type="text/css" rel="stylesheet"
-	href="/static/css/materialize.min.css">
+<link rel="apple-touch-icon" sizes="180x180" href="/static/img/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon-16x16.png">
+		<link rel="manifest" href="/static/img/site.webmanifest">
+		<meta name="msapplication-TileColor" content="#da532c">
+		<meta name="theme-color" content="#ffffff">
+      
+      
+<link type="text/css" rel="stylesheet" href="/static/css/materialize.min.css"  media="screen,projection"/>
 <link type="text/css" rel="stylesheet" href="/static/css/site.css" />
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
-
-<meta name="viewport"
-	css="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    
 <meta http-equiv="X-UA-Compatible" css="IE=Edge" />
 <META HTTP-EQUIV="CACHE-CONTROL" css="NO-CACHE">
 <META HTTP-EQUIV="Pragma" css="no-cache">
 <META HTTP-EQUIV="Expires" css="-1">
+
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/materialize.min.js"></script>
-<script type="text/javascript"
-	src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="/static/js/charts.js"></script>
 <script type="text/javascript" src="/static/js/bdp.js"></script>
 
@@ -29,7 +33,7 @@
 		<nav class="nav-extended">
 			<div class="nav-wrapper adminnav">
 				<a href="#" class="brand-logo"><img
-					src="/static/img/logo_transparent.png" width="185px" /></a>
+					src="/static/img/logo_transparent.png" width="160px" /></a>
 			</div>
 			<div class="nav-content admintab">
 				<ul class="tabs tabs-transparent">
@@ -71,7 +75,7 @@
 	
 	<div id="totalnum" class="container"></div>
 	<div class="row"></div>
-	<div id="timeseries" class="container"></div>
+	<div id="timeseries" class="container timeseries" style='width: 100%; height: 800px;'></div>
 	
 
 	<div id="result" class="container"></div>
@@ -89,10 +93,10 @@
 		</a>
 		<ul>
 			<li><a class="btn-floating flbtn-chart"
-				onclick='changeTo("chart", "table")'><i class="material-icons">pie_chart</i></a></li>
+				onclick='changeTo("chart", "table", "timeseries")'><i class="material-icons">pie_chart</i></a></li>
 			<li><a class="btn-floating flbtn-tab"
-				onclick='changeTo("table", "chart")'><i class="material-icons">table_chart</i></a></li>
-			<li><a class="btn-floating flbtn-download" onclick='showTimeSeries()'><i
+				onclick='changeTo("table", "chart", "timeseries")'><i class="material-icons">tab</i></a></li>
+			<li><a class="btn-floating flbtn-download" onclick='changeTo("timeseries", "chart", "table")'><i
 					class="material-icons">timeline</i></a></li>
 		</ul>
 	</div>
@@ -125,8 +129,10 @@
 					done : 'Ok',
 					//onClose: drawCharts(),
 					i18n : {
-						months : [ 'GEN', 'FEB', 'MAR', 'APR', 'MAG', 'GIU',
-								'LUG', 'AGO', 'SET', 'OTT', 'NOV', 'DIC' ],
+						months : [ 'Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu',
+							'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic' ],
+						monthsShort : [ 'Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu',
+									'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic' ],
 						weekdays : [ 'Domenica', 'Lunedi', 'Martedi',
 								'Mercoledi', 'Giovedi', 'Venerdi', 'Sabato' ],
 						weekdaysShort : [ 'Dom', 'Lun', 'Mar', 'Mer', 'Gio',
