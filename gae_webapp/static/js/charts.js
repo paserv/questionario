@@ -200,7 +200,10 @@ function drawToday() {
 
 function drawMonth() {
 	$("#date_range").hide();
-	firstRun();
+	setActive("month");
+	var today = new Date();
+	$("#from_date").val("01-" + (today.getMonth()+1) + "-" + today.getFullYear());
+	$("#to_date").val(today.getDate() + "-" + (today.getMonth()+1) + "-" + today.getFullYear());
 	drawCharts();
 }
 

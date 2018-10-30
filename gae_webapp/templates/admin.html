@@ -67,7 +67,7 @@
 			</div>
 			<div class="col s2">
 				<a onclick='drawCharts()'
-					class="btn-floating waves-effect waves-light datebtn"><i
+					class="btn-floating waves-effect waves-light"><i
 					class="material-icons">play_arrow</i></a>
 			</div>
 		</div>
@@ -77,27 +77,25 @@
 	<div class="row"></div>
 	<div id="timeseries" class="container timeseries" style='width: 100%; height: 800px;'></div>
 	
-
-	<div id="result" class="container"></div>
-
-	<div class="row">
+		<div class="row">
 		<div id="preloader" class="progress" style="display: none">
 			<div class="indeterminate"></div>
 		</div>
 	</div>
+
+	<div id="result" class="container"></div>
+
+
 	</main>
 
 	<div class="fixed-action-btn">
-		<a class="btn-floating btn-large flbtn"> <i
+		<a class="btn-floating btn-large"> <i
 			class="large material-icons">mode_edit</i>
 		</a>
 		<ul>
-			<li><a class="btn-floating flbtn-chart"
-				onclick='changeTo("chart", "table", "timeseries")'><i class="material-icons">pie_chart</i></a></li>
-			<li><a class="btn-floating flbtn-tab"
-				onclick='changeTo("table", "chart", "timeseries")'><i class="material-icons">tab</i></a></li>
-			<li><a class="btn-floating flbtn-download" onclick='changeTo("timeseries", "chart", "table")'><i
-					class="material-icons">timeline</i></a></li>
+			<li><a class="btn-floating flbtn-chart" onclick='changeTo("chart", "table", "timeseries")'><i class="material-icons">pie_chart</i></a></li>
+			<li><a class="btn-floating flbtn-tab" onclick='changeTo("table", "chart", "timeseries")'><i class="material-icons">tab</i></a></li>
+			<!-- <li><a class="btn-floating flbtn-download" onclick='changeTo("timeseries", "chart", "table")'><i class="material-icons">timeline</i></a></li> -->
 		</ul>
 	</div>
 
