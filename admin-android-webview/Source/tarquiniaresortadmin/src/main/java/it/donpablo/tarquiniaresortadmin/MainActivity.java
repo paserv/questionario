@@ -11,12 +11,13 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 import android.widget.ProgressBar;
+import android.os.Build;
 
 import it.donpablo.sibillo.webview.AdvancedWebView;
 
 public class MainActivity extends Activity implements AdvancedWebView.Listener {
 
-	private static final String PAGE_URL = "https://admin.tarquinia-resort.appspot.com/admin/home";
+	private static final String PAGE_URL = "http://admin.tarquinia-resort.appspot.com/home";
 	private AdvancedWebView mWebView;
 	private ProgressBar loader;
 	private Stack history;
@@ -24,10 +25,19 @@ public class MainActivity extends Activity implements AdvancedWebView.Listener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
+
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
 		mWebView = (AdvancedWebView) findViewById(R.id.webview);
+
+		/*
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+			WebView.setWebContentsDebuggingEnabled(true);
+		}
+		*/
+
 		loader = (ProgressBar) findViewById(R.id.loader);
 		history = new Stack();
 		history.push(PAGE_URL);

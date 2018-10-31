@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "it.donpablo.tarquiniaresortadmin.webview"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 26
     }
 
