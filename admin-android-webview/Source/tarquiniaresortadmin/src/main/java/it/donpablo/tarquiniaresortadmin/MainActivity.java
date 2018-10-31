@@ -16,7 +16,7 @@ import it.donpablo.sibillo.webview.AdvancedWebView;
 
 public class MainActivity extends Activity implements AdvancedWebView.Listener {
 
-	private static final String PAGE_URL = "https://tarquinia-resort.appspot.com/";
+	private static final String PAGE_URL = "https://admin.tarquinia-resort.appspot.com/admin/home";
 	private AdvancedWebView mWebView;
 	private ProgressBar loader;
 	private Stack history;
