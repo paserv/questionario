@@ -27,6 +27,7 @@ function drawCharts() {
 		    });
 		
 		let payload = '{ "from": "' + $("#from_date").val() + '", "to": "' + $("#to_date").val() + '" }'
+		
 		$.ajax({
 			type: "POST",
 		      url: "/admin/get-answers-by-day",
@@ -41,6 +42,7 @@ function drawCharts() {
 		    	console.log(thrownError);
 		      }
 		});
+		
 	}
 
 }
@@ -224,9 +226,9 @@ function showCustom() {
 function isDataRangeValid() {
 	if ($("#from_date").val() && $("#to_date").val() && $("#from_date").val() != "" && $("#to_date").val() != "") {
 		let fromDateSplitted = $("#from_date").val().split("-");
-		let currFrom = new Date(fromDateSplitted[2] + "-" + fromDateSplitted[1] + "-" + fromDateSplitted[0] + "T00:00:00Z");
+		let currFrom = new Date(parseInt(fromDateSplitted[2]), parseInt(fromDateSplitted[1]), parseInt(fromDateSplitted[0]), 0, 0, 0);
 		let toDateSplitted = $("#to_date").val().split("-");
-		let currTo = new Date(toDateSplitted[2] + "-" + toDateSplitted[1] + "-" + toDateSplitted[0] + "T23:59:59Z");
+		let currTo = new Date(parseInt(toDateSplitted[2]), parseInt(toDateSplitted[1]), parseInt(toDateSplitted[0]), 23, 59, 59);
 		if (currTo > currFrom) {
 			return true;
 		}
